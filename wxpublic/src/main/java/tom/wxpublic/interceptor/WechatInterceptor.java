@@ -11,29 +11,24 @@ import javax.servlet.http.HttpServletResponse;
 
 
 public class WechatInterceptor implements HandlerInterceptor {
-
+	private long stime;
+	private long etime;
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        
-     //todo 在此处添加要操作code  
-    	String signature =   httpServletRequest.getParameter("signature");
-	    String timestamp =  httpServletRequest.getParameter("timestamp");
-	    String nonce =  httpServletRequest.getParameter("nonce");
-	    //todo 在此处添加要操作code  
-	    if(!SignUtil.checkSignature(signature, timestamp, nonce)){
-	    	 httpServletResponse.getWriter().append(MessageUtil.INVALID_REQ_MSG);
-	    	 return false;
-	    }
+        System.out.println("WechatInterceptor--preHandle");  //todo 可以用来修改信息，跳转等
+
+    	stime=System.currentTimeMillis();
         return true;
     }
 
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
-        System.out.println("postHandle");  //todo 可以用来修改信息，跳转等
+        System.out.println("WechatInterceptor--postHandle");  //todo 可以用来修改信息，跳转等
     }
 
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
-        System.out.println("afterCompletion"); //todo 最后执行
+        etime=System.currentTimeMillis();
+        System.out.println("WechatInterceptor.."+(etime-stime)+"ms"); //todo 最后执行
     }
 }

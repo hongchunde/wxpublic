@@ -24,6 +24,7 @@ public class HttpPostUtil {
 		httpClient.getParams().setContentCharset("UTF-8");
 
 		PostMethod postMethod = new PostMethod(url);
+		httpClient.setTimeout(10000);
 		// 将文本消息对象转换成xml
 		postMethod.setRequestBody(reqXml);
 		try {
@@ -41,7 +42,11 @@ public class HttpPostUtil {
 			e.printStackTrace();
 		} finally {
 			// 7.释放连接
+			try{
 			postMethod.releaseConnection();
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}
 			postMethod=null;
 		}
 		return responseStr;

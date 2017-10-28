@@ -46,9 +46,13 @@
         <mvc:interceptor>
             <!--对特定的模块拦截-->
             <mvc:mapping path="/wechat/*"/>
+            <bean class="tom.wxpublic.interceptor.SignInterceptor"/>
+        </mvc:interceptor>
+		 <mvc:interceptor>
+            <!--对特定的模块拦截-->
+            <mvc:mapping path="/wechat/*"/>
             <bean class="tom.wxpublic.interceptor.WechatInterceptor"/>
         </mvc:interceptor>
-
     </mvc:interceptors>
 	 
 </beans>

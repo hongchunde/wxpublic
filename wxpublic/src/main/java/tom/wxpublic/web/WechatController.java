@@ -54,6 +54,7 @@ public class WechatController {
 			 produces = {"application/xml; charset=utf-8" })
 	@ResponseBody
 	public String testpost()  throws Exception{
+		
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
 
