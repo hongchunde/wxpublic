@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Param;
 
 import tom.wxpublic.entity.Book;
 
-
 public interface BookDao {
 
 	/**

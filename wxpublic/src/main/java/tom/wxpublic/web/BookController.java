@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import tom.wxpublic.entity.Book;
 import tom.wxpublic.service.BookService;
@@ -26,12 +27,17 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	private String list(Model model) {
+	@RequestMapping(value = "/list", method = RequestMethod.GET,
+			 produces = {"application/html; charset=utf-8" })
+	public ModelAndView list(Model model) {
 		List<Book> list = bookService.getList();
-		model.addAttribute("list", list);
+//		model.addAttribute("list", list);
 		// list.jsp + model = ModelAndView
-		return "list";// WEB-INF/jsp/"list".jsp
+		
+	   ModelAndView mav = new ModelAndView("list");
+	   mav.addObject("content", list);
+
+		return mav;// WEB-INF/jsp/"list".jsp
 	}
 
 	@RequestMapping(value = "/{bookId}/detail", method = RequestMethod.GET)

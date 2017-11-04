@@ -11,7 +11,8 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry excluding="main/java/|main/resources/|test/java/" kind="src" path="src"/>
+	<classpathentry excluding="main/java/|main/resources/|test/java/|main/webapp/|main/webapp/" kind="src" path="src"/>
+	<classpathentry kind="src" path="src/main/webapp"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
